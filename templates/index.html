@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Stay up to date with the latest Google Cloud BigQuery release notes. Track updates, features, deprecations, and share them on Twitter.">
+  <title>BigQuery Release Notes Tracker</title>
+  
+  <!-- Modern Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="header-title-container">
+        <h1>
+          <i class="fa-solid fa-database"></i> 
+          <span>BigQuery Release Notes</span>
+        </h1>
+        <p class="subtitle">Track Google Cloud BigQuery updates, features, and fixes in real time</p>
+      </div>
+      <div class="refresh-container">
+        <span class="last-updated" id="last-updated-time">Last updated: Never</span>
+        <button id="btn-refresh" class="btn-refresh" title="Refresh Release Notes">
+          <i class="fa-solid fa-rotate" id="refresh-icon"></i>
+          <span>Refresh Details</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <!-- Loading State -->
+      <div id="loader" class="loader-container">
+        <div class="main-spinner"></div>
+        <p class="loader-text">Fetching latest release notes...</p>
+      </div>
+
+      <!-- Error State -->
+      <div id="error-box" class="error-container" style="display: none;">
+        <h2 class="error-title">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <span>Failed to load updates</span>
+        </h2>
+        <p id="error-msg" class="error-message">Something went wrong while fetching the release notes. Please try again.</p>
+        <button id="btn-retry" class="btn-retry">Retry Fetching</button>
+      </div>
+
+      <!-- Feed Container -->
+      <section id="release-notes" class="release-notes-list" style="display: none;">
+        <!-- Release cards will be rendered dynamically here -->
+      </section>
+
+      <!-- Empty State -->
+      <div id="empty-state" class="empty-state" style="display: none;">
+        <i class="fa-solid fa-info-circle"></i>
+        <p>No release notes found.</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Selection Tweet Tooltip -->
+  <button id="selection-tweet-btn" class="btn-tweet" style="position: absolute; display: none; z-index: 100; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+    <i class="fa-brands fa-x-twitter"></i> Tweet Selection
+  </button>
+
+  <!-- Tweet Modal -->
+  <div id="tweet-modal" class="modal-overlay">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h2 class="modal-title">
+          <i class="fa-brands fa-x-twitter"></i> Share Update
+        </h2>
+        <button id="btn-close-modal" class="btn-close" aria-label="Close modal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <textarea id="tweet-text" class="tweet-textarea" placeholder="What's happening?"></textarea>
+        <div class="tweet-footer">
+          <span id="char-counter" class="char-counter">280</span>
+          <button id="btn-send-tweet" class="btn-send-tweet">
+            <i class="fa-brands fa-x-twitter"></i> Post Update
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom JavaScript -->
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
